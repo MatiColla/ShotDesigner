@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shot Designer — Blocking Top-Down</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="topbar">
+    <div class="brand">🎬 Shot Designer</div>
+    <div class="lang-tog">
+      <button id="lang-en" title="English">ENG</button><button id="lang-es" class="sel" title="Espanol">SPA</button>
+    </div>
+    <div class="toolbar">
+      <button id="btn-add-m" title="Agregar personaje varon">♂ Varon</button>
+      <button id="btn-add-f" title="Agregar personaje mujer">♀ Mujer</button>
+      <button id="btn-add-cam" title="Agregar camara">🎥 Camara</button>
+      <button id="btn-add-pov" title="Agregar camara POV del personaje seleccionado">👁 POV</button>
+      <button id="btn-add-prop" title="Agregar objeto">▢ Objeto</button>
+      <span class="sep"></span>
+      <button id="btn-bg" title="Cargar imagen de fondo (tu plano)">🖼 Fondo</button>
+      <button id="btn-labels" class="tog on" title="Mostrar/ocultar todos los nombres">🏷 Nombres</button>
+      <button id="btn-paths" class="tog on" title="Mostrar/ocultar todas las lineas de recorrido">➜ Recorridos</button>
+      <div id="bg-controls">
+        <label><span id="bg-scale-lbl">escala</span> <input type="range" id="bg-scale" min="0.1" max="4" step="0.05" value="1"></label>
+        <label><span id="bg-opacity-lbl">opacidad</span> <input type="range" id="bg-opacity" min="0.1" max="1" step="0.05" value="1"></label>
+        <button id="bg-remove" title="Quitar fondo">✕</button>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="toolbar">
+      <div class="menu-wrap">
+        <button id="btn-render" title="Renderizar: video o secuencia de imagenes">🎬 Render ▾</button>
+        <div id="render-menu" class="menu hidden">
+          <button id="btn-render-video">🎬 Video (MP4, max 30 MB)</button>
+          <button id="btn-render-seq">🖼 Imagenes (1 cada 3 s, ZIP)</button>
+        </div>
+      </div>
+      <button id="btn-export" title="Guardar la escena: descarga el archivo JSON (Ctrl+S)">💾 Guardar</button>
+      <button id="btn-import" title="Abrir una escena guardada (JSON)">📂 Abrir</button>
+      <button id="btn-clear" title="Escena nueva">🗑 Nueva</button>
+    </div>
+    <input type="file" id="bg-file" accept="image/*" hidden>
+    <input type="file" id="import-file" accept=".json,application/json" hidden>
+  </header>
+
+  <div id="switcher-bar">
+    <span id="live-tag">SIN CAMARA</span>
+    <div id="cam-switcher"></div>
+    <span class="hint-inline" id="switcher-hint">clic o teclas 1-9 = cortar a esa camara en el tiempo actual (edicion en vivo)</span>
+  </div>
+
+  <main id="middle">
+    <div id="stage-wrap">
+      <canvas id="stage"></canvas>
+    </div>
+    <aside id="side">
+      <div id="inspector"></div>
+    </aside>
+  </main>
+
+  <footer id="timeline">
+    <div id="tl-controls">
+      <button id="btn-stop" title="Volver al inicio">⏮</button>
+      <button id="btn-play" title="Play / Pausa (espacio)">▶</button>
+      <button id="btn-end" title="Ir al final">⏭</button>
+      <button id="btn-loop" class="tog" title="Repetir">🔁</button>
+      <button id="btn-autokey" class="tog" title="AUTO-KEY: al mover algo, graba keyframe en el tiempo actual">● AUTO-KEY</button>
+      <span id="tl-time">0.0s / 15s</span>
+      <label class="dur"><span id="dur-pre">Duracion</span> <input type="number" id="dur-input" min="1" max="30" value="15"> <span id="dur-post">s (max 30)</span></label>
+    </div>
+    <div id="tl-body">
+      <div id="tl-labels"></div>
+      <div id="tl-area">
+        <div id="tl-ruler"></div>
+        <div id="tl-rows"></div>
+        <div id="tl-playhead"></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/zip.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/canvas.js"></script>
+  <script src="js/timeline.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
